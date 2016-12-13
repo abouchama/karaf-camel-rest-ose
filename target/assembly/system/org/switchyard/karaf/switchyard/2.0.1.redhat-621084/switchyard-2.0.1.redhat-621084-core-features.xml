@@ -1,0 +1,683 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<features name="switchyard-2.0.1.redhat-621084">
+
+    <repository>mvn:org.apache.karaf.assemblies.features/pax-cdi-features/2.4.0.redhat-621084/xml/features</repository>
+
+    <!-- Smooks override -->
+
+    <feature name="smooks" version="1.5.2">
+        <bundle>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.antlr/2.7.7_5</bundle>
+        <bundle>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.freemarker/2.3.21_1</bundle>
+        <bundle>mvn:org.codehaus.groovy/groovy-all/1.8.6</bundle>
+        <bundle>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.jaxen/1.1.6_1</bundle>
+        <bundle>mvn:org.ow2.asm/asm-all/5.0.3</bundle>
+        <bundle>mvn:commons-lang/commons-lang/2.6</bundle>
+        <bundle>mvn:org.ow2.bundles/ow2-bundles-externals-opencsv/1.0.23</bundle>
+        <bundle>mvn:org.milyn/milyn-smooks-all/1.5.2</bundle>
+    </feature>
+
+    <!-- Switchyard Core -->
+
+    <feature name="switchyard" version="2.0.1.redhat-621084" resolver="(obr)">
+        <feature>eventadmin</feature>
+        <feature>http</feature>
+        <feature version="[2.14,3)">camel-core</feature>
+        <feature version="[2.14,3)">camel-spring</feature>
+        <feature>switchyard-internal-core</feature>
+        <bundle>mvn:org.switchyard.karaf/switchyard-karaf-deploy/2.0.1.redhat-621084</bundle>
+        <bundle>mvn:org.switchyard.karaf/switchyard-karaf-commands/2.0.1.redhat-621084</bundle>
+    </feature>
+
+    <feature name="switchyard-internal-core" version="2.0.1.redhat-621084" resolver="(obr)">
+        <feature version="2.0.1.redhat-621084">switchyard-cdi</feature>
+        <bundle dependency='true'>mvn:org.apache.geronimo.specs/geronimo-servlet_3.0_spec/1.0</bundle>
+        <bundle dependency='true'>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.xmlresolver/1.2_5</bundle>
+        <bundle>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.jaxb-impl/2.2.11_1</bundle>
+        <bundle>mvn:org.jboss.logging/jboss-logging/3.3.0.Final</bundle>
+        <bundle>mvn:org.switchyard/switchyard-api/2.0.1.redhat-621084</bundle>
+        <bundle>mvn:org.switchyard/switchyard-common/2.0.1.redhat-621084</bundle>
+        <bundle>mvn:org.switchyard/switchyard-common-camel/2.0.1.redhat-621084</bundle>
+        <bundle>mvn:org.switchyard/switchyard-common-cdi/2.0.1.redhat-621084</bundle>
+        <bundle>mvn:org.switchyard/switchyard-security/2.0.1.redhat-621084</bundle>
+        <bundle>mvn:org.switchyard/switchyard-security-karaf/2.0.1.redhat-621084</bundle>
+        <bundle>mvn:org.switchyard/switchyard-config/2.0.1.redhat-621084</bundle>
+        <bundle>mvn:org.switchyard/switchyard-serial/2.0.1.redhat-621084</bundle>
+        <bundle>mvn:org.switchyard/switchyard-serial-jackson/2.0.1.redhat-621084</bundle>
+        <bundle>mvn:org.switchyard/switchyard-runtime/2.0.1.redhat-621084</bundle>
+        <bundle>mvn:org.switchyard/switchyard-extensions-java/2.0.1.redhat-621084</bundle>
+        <bundle>mvn:org.switchyard/switchyard-extensions-wsdl/2.0.1.redhat-621084</bundle>
+        <bundle>mvn:org.switchyard/switchyard-bus-camel/2.0.1.redhat-621084</bundle>
+        <bundle>mvn:org.switchyard/switchyard-validate/2.0.1.redhat-621084</bundle>
+        <bundle>mvn:org.switchyard/switchyard-admin/2.0.1.redhat-621084</bundle>
+        <bundle>mvn:org.switchyard/switchyard-deploy/2.0.1.redhat-621084</bundle>
+        <bundle>mvn:org.codehaus.jackson/jackson-core-asl/1.9.12</bundle>
+        <bundle>mvn:org.codehaus.jackson/jackson-mapper-asl/1.9.12</bundle>
+        <feature dependency="true" version="5.5.1">dozer</feature>
+        <feature dependency="true" version="1.5.2">smooks</feature>
+        <bundle>mvn:org.switchyard/switchyard-transform/2.0.1.redhat-621084</bundle>
+    </feature>
+
+    <feature name="dozer" version="5.5.1" resolver="(obr)">
+        <bundle dependency="true">mvn:commons-collections/commons-collections/3.2.1.redhat-7</bundle>
+        <bundle dependency="true">mvn:commons-beanutils/commons-beanutils/1.9.2</bundle>
+        <bundle dependency="true">mvn:org.apache.commons/commons-lang3/3.3.2</bundle>
+        <bundle>mvn:net.sf.dozer/dozer-osgi/5.5.1</bundle>
+    </feature>
+
+    <feature name="xalan-deps" version="2.0.1.redhat-621084" resolver="(obr)">
+        <bundle>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.bcel/5.2_4</bundle>
+        <bundle>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.xalan/2.7.2_2</bundle>
+        <bundle>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.xalan-serializer/2.7.2_1</bundle>
+        <bundle>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.xmlbeans/2.6.0_2</bundle>
+    </feature>
+
+    <feature name="switchyard-camel-jpa-hibernate" version="2.0.1.redhat-621084" resolver="(obr)">
+        <bundle dependency='true'>mvn:org.apache.geronimo.specs/geronimo-annotation_1.0_spec/1.1.1</bundle>
+        <bundle dependency="true" start-level="30">mvn:org.apache.geronimo.specs/geronimo-jpa_2.0_spec/1.1</bundle>
+        <bundle dependency='true'>mvn:org.apache.geronimo.specs/geronimo-servlet_2.5_spec/1.2</bundle>
+        <feature version='[3.2,4)'>spring-tx</feature>
+        <bundle dependency='true'>mvn:org.apache.geronimo.specs/geronimo-el_1.0_spec/1.0.1</bundle>
+        <bundle dependency='true'>mvn:org.apache.geronimo.specs/geronimo-jta_1.1_spec/1.1.1</bundle>
+        <feature version='[3.2,4)'>spring-jdbc</feature>
+        <bundle dependency='true'>mvn:commons-lang/commons-lang/2.6</bundle>
+        <bundle dependency='true'>mvn:commons-collections/commons-collections/3.2.1.redhat-7</bundle>
+        <bundle dependency='true'>mvn:commons-pool/commons-pool/1.6</bundle>
+        <bundle dependency='true'>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.commons-dbcp/1.4_3</bundle>
+        <bundle dependency='true'>mvn:org.apache.geronimo.specs/geronimo-jms_1.1_spec/1.1.1</bundle>
+        <bundle dependency='true'>mvn:org.ow2.asm/asm-all/5.0.3</bundle>
+        <feature version="[4.2,4.4)">hibernate</feature>
+        <feature version='[3.2,4)'>spring-orm</feature>
+        <feature version='[2.14,3)'>camel-core</feature>
+        <bundle>mvn:org.apache.camel/camel-jpa/2.15.1.redhat-621084</bundle>
+    </feature>
+
+    <!-- Switchyard Components -->
+
+    <feature name="switchyard-amqp" version="2.0.1.redhat-621084" resolver="(obr)">
+        <feature version="2.0.1.redhat-621084">switchyard-jms</feature>
+        <feature version="[2.14,3)">camel-amqp</feature>
+        <bundle>mvn:org.switchyard.components/switchyard-component-camel-amqp/2.0.1.redhat-621084</bundle>
+    </feature>
+
+    <feature name="switchyard-atom" version="2.0.1.redhat-621084" resolver="(obr)">
+        <feature version="2.0.1.redhat-621084">switchyard-camel</feature>
+        <feature version="[2.14,3)">camel-atom</feature>
+        <bundle>mvn:org.switchyard.components/switchyard-component-camel-atom/2.0.1.redhat-621084</bundle>
+    </feature>
+
+    <feature name="switchyard-bean" version="2.0.1.redhat-621084" resolver="(obr)">
+        <feature version="2.0.1.redhat-621084">switchyard</feature>
+        <bundle>mvn:org.switchyard.components/switchyard-component-common/2.0.1.redhat-621084</bundle>
+        <bundle>mvn:org.switchyard.components/switchyard-component-bean/2.0.1.redhat-621084</bundle>
+    </feature>
+    
+    <feature name="switchyard-bpel" version="2.0.1.redhat-621084" resolver="(obr)">
+        <feature>jndi</feature>
+        <feature version="2.0.1.redhat-621084">switchyard</feature>
+        <bundle>mvn:org.switchyard.components/switchyard-component-common/2.0.1.redhat-621084</bundle>
+
+        <!-- database -->
+        <bundle start-level="50">mvn:com.h2database/h2/1.3.168</bundle>
+
+        <!-- spring dependencies -->
+        <feature version="[2.14,3)">camel-spring</feature>
+        <!-- transactions support -->
+        <bundle dependency="true">wrap:mvn:org.jboss.jbossts.jts/jbossjts-jacorb/4.17.19.Final</bundle>
+        <bundle dependency="true">wrap:mvn:org.jboss.jbossts.xts/jbossxts/4.17.19.Final</bundle>
+        <bundle dependency="true">wrap:mvn:org.jboss.jbossts/jbosstxbridge/4.17.19.Final</bundle>
+        <!-- infinispan support -->
+        <bundle dependency="true">wrap:mvn:org.jboss.marshalling/jboss-marshalling/1.4.6.Final</bundle>
+        <bundle dependency="true">wrap:mvn:org.jboss.marshalling/jboss-marshalling-river/1.4.6.Final</bundle>
+        <bundle dependency="true">wrap:mvn:org.jboss/staxmapper/1.1.0.Final</bundle>
+        <bundle dependency="true">mvn:org.jgroups/jgroups/3.4.1.Final</bundle>
+        <bundle dependency="true">mvn:org.infinispan/infinispan-core/5.2.10.Final</bundle>
+        
+        <feature version="[4.2,4.4)">hibernate</feature>
+        <bundle>wrap:mvn:net.sourceforge.saxon/saxonhe/9.2.1.5$Export-Package=*;-noimport:=true;version="9.2.1.5"</bundle>
+        <bundle>mvn:commons-collections/commons-collections/3.2.1.redhat-7</bundle>
+        <bundle>mvn:commons-lang/commons-lang/2.6</bundle>
+        <feature version="2.0.1.redhat-621084">xalan-deps</feature>
+        <bundle>mvn:org.codehaus.jettison/jettison/1.3.7</bundle>
+        <bundle>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.batik/1.7_3</bundle>
+        <bundle>mvn:commons-codec/commons-codec/1.10</bundle>
+        <bundle>wrap:mvn:xml-apis/xml-apis-ext/1.3.04</bundle>
+        <bundle>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.wsdl4j/1.6.3_1</bundle>
+
+        <bundle>mvn:org.overlord/overlord-commons-services/2.0.18.Final-redhat-2</bundle>
+
+        <bundle>mvn:org.switchyard.karaf/switchyard-karaf-bpel/2.0.1.redhat-621084</bundle>
+        <configfile finalname="/etc/org.switchyard.component.bpel.cfg">mvn:org.switchyard.karaf/switchyard-karaf-bpel/2.0.1.redhat-621084/properties/riftsaw</configfile>
+    </feature>
+
+    <feature name="switchyard-cdi" version="2.0.1.redhat-621084" resolver="(obr)">
+        <feature version="0.11.0.redhat-001">pax-cdi-1.2-weld</feature>
+        <feature version="1.2.1">deltaspike-core</feature>
+        <bundle>mvn:org.apache.camel/camel-cdi/2.15.1.redhat-621084</bundle>
+    </feature>
+
+
+
+    <feature name="switchyard-camel" version="2.0.1.redhat-621084" resolver="(obr)">
+        <feature version="2.0.1.redhat-621084">switchyard</feature>
+        <feature version="2.0.1.redhat-621084">xalan-deps</feature>
+        <bundle>mvn:org.switchyard.components/switchyard-component-common/2.0.1.redhat-621084</bundle>
+        <bundle>mvn:org.switchyard.components/switchyard-component-common-camel/2.0.1.redhat-621084</bundle>
+        <bundle>mvn:org.switchyard.components/switchyard-component-camel-switchyard/2.0.1.redhat-621084</bundle>
+        <bundle>mvn:org.switchyard.components/switchyard-component-camel-core/2.0.1.redhat-621084</bundle>
+        <bundle>mvn:org.switchyard.components/switchyard-component-camel/2.0.1.redhat-621084</bundle>
+    </feature>
+
+    <feature name="switchyard-camel-cxf" version="2.0.1.redhat-621084" resolver="(obr)">
+        <feature version="2.0.1.redhat-621084">switchyard-camel</feature>
+        <feature version="[2.14,3)">camel-cxf</feature>
+        <bundle>mvn:org.switchyard.components/switchyard-component-camel-cxf/2.0.1.redhat-621084</bundle>
+    </feature>
+
+    <feature name="switchyard-file" version="2.0.1.redhat-621084" resolver="(obr)">
+        <feature version="2.0.1.redhat-621084">switchyard-camel</feature>
+        <bundle>mvn:org.switchyard.components/switchyard-component-camel-file/2.0.1.redhat-621084</bundle>
+    </feature>
+
+    <feature name="switchyard-ftp" version="2.0.1.redhat-621084" resolver="(obr)">
+        <feature version="2.0.1.redhat-621084">switchyard-camel</feature>
+        <feature version="[2.14,3)">camel-ftp</feature>
+        <bundle>mvn:org.switchyard.components/switchyard-component-camel-ftp/2.0.1.redhat-621084</bundle>
+    </feature>
+
+    <feature name="switchyard-http" version="2.0.1.redhat-621084" resolver="(obr)">
+        <feature version="2.0.1.redhat-621084">switchyard</feature>
+        <feature version="2.0.1.redhat-621084">switchyard-internal-http</feature>
+    </feature>
+
+    <feature name="switchyard-internal-http" version="2.0.1.redhat-621084" resolver="(obr)">
+        <feature version="[7,9)">jetty</feature>
+        <feature version="2.0.1.redhat-621084">xalan-deps</feature>
+        <bundle dependency='true'>mvn:org.apache.httpcomponents/httpcore-osgi/4.3.3</bundle>
+        <bundle dependency='true'>mvn:org.apache.httpcomponents/httpclient-osgi/4.3.6</bundle>
+        <bundle>mvn:org.switchyard.components/switchyard-component-http/2.0.1.redhat-621084</bundle>
+    </feature>
+
+    <feature name="switchyard-jms" version="2.0.1.redhat-621084" resolver="(obr)">
+        <feature version="2.0.1.redhat-621084">switchyard-camel</feature>
+        <feature version="[2.14,3)">camel-jms</feature>
+        <bundle>mvn:org.switchyard.components/switchyard-component-camel-jms/2.0.1.redhat-621084</bundle>
+    </feature>
+
+    <feature name="switchyard-jpa" version="2.0.1.redhat-621084" resolver="(obr)">
+        <feature version="2.0.1.redhat-621084">switchyard-camel</feature>
+        <feature version="2.0.1.redhat-621084">switchyard-camel-jpa-hibernate</feature>
+        <bundle>mvn:org.switchyard.components/switchyard-component-camel-jpa/2.0.1.redhat-621084</bundle>
+    </feature>
+
+    <feature name="switchyard-mail" version="2.0.1.redhat-621084" resolver="(obr)">
+        <feature version="2.0.1.redhat-621084">switchyard-camel</feature>
+        <feature version="[2.14,3)">camel-mail</feature>
+        <bundle>mvn:org.switchyard.components/switchyard-component-camel-mail/2.0.1.redhat-621084</bundle>
+    </feature>
+
+    <feature name="switchyard-mqtt" version="2.0.1.redhat-621084" resolver="(obr)">
+        <feature version="2.0.1.redhat-621084">switchyard-camel</feature>
+        <feature version="[2.14,3)">camel-mqtt</feature>
+        <bundle>mvn:org.switchyard.components/switchyard-component-camel-mqtt/2.0.1.redhat-621084</bundle>
+    </feature>
+
+    <feature name="switchyard-netty" version="2.0.1.redhat-621084" resolver="(obr)">
+        <feature version="2.0.1.redhat-621084">switchyard-camel</feature>
+        <feature version="[2.14,3)">camel-netty</feature>
+        <bundle>mvn:org.switchyard.components/switchyard-component-camel-netty/2.0.1.redhat-621084</bundle>
+    </feature>
+
+    <feature name="switchyard-quartz" version="2.0.1.redhat-621084" resolver="(obr)">
+        <feature version="2.0.1.redhat-621084">switchyard-camel</feature>
+        <feature version="[2.14,3)">camel-quartz</feature>
+        <bundle>mvn:org.switchyard.components/switchyard-component-camel-quartz/2.0.1.redhat-621084</bundle>
+    </feature>
+
+    <feature name="switchyard-rss" version="2.0.1.redhat-621084" resolver="(obr)">
+        <feature version="2.0.1.redhat-621084">switchyard-camel</feature>
+        <feature version="[2.14,3)">camel-rss</feature>
+        <bundle>mvn:org.switchyard.components/switchyard-component-camel-atom/2.0.1.redhat-621084</bundle>
+        <bundle>mvn:org.switchyard.components/switchyard-component-camel-rss/2.0.1.redhat-621084</bundle>
+    </feature>
+
+    <feature name="switchyard-rest" version="2.0.1.redhat-621084" resolver="(obr)">
+        <feature version="2.0.1.redhat-621084">switchyard</feature>
+        <feature version="2.0.1.redhat-621084">switchyard-internal-rest</feature>
+     </feature>
+
+    <feature name="switchyard-internal-rest" version="2.0.1.redhat-621084" resolver="(obr)">
+        <bundle dependency='true'>mvn:org.apache.servicemix.specs/org.apache.servicemix.specs.jsr311-api-1.1.1/2.5.0</bundle>
+        <bundle dependency='true'>wrap:mvn:org.jboss.resteasy/resteasy-jaxrs/2.3.10.Final$overwrite=merge&amp;Import-Package=javax.activation;resolution:=optional,javax.annotation.security;resolution:=optional,javax.imageio;resolution:=optional,javax.imageio.metadata;resolution:=optional,javax.imageio.plugins.jpeg;resolution:=optional,javax.imageio.stream;resolution:=optional,javax.naming;resolution:=optional,javax.servlet;resolution:=optional,javax.servlet.http;resolution:=optional,javax.ws.rs;version="[1.1.1,2)";resolution:=optional,javax.ws.rs.core;version="[1.1.1,2)";resolution:=optional,javax.ws.rs.ext;version="[1.1.1,2)",javax.xml.parsers;resolution:=optional,javax.xml.transform;resolution:=optional,javax.xml.transform.dom;resolution:=optional,javax.xml.transform.stream;resolution:=optional,org.apache.commons.io.output;resolution:=optional,org.apache.http;resolution:=optional,org.apache.http.auth;resolution:=optional,org.apache.http.client;resolution:=optional,org.apache.http.client.entity;resolution:=optional,org.apache.http.client.methods;resolution:=optional,org.apache.http.client.params;resolution:=optional,org.apache.http.conn;resolution:=optional,org.apache.http.cookie;resolution:=optional,org.apache.http.entity;resolution:=optional,org.apache.http.impl.auth;resolution:=optional,org.apache.http.impl.client;resolution:=optional,org.apache.http.message;resolution:=optional,org.apache.http.params;resolution:=optional,org.apache.http.protocol;resolution:=optional,org.apache.http.util;resolution:=optional,org.apache.log4j;resolution:=optional,org.jboss.logging;resolution:=optional,org.scannotation;resolution:=optional,org.slf4j;resolution:=optional,org.w3c.dom;resolution:=optional</bundle>
+        <bundle>wrap:mvn:org.jboss.resteasy/resteasy-jaxb-provider/2.3.10.Final</bundle>
+        <bundle>mvn:org.codehaus.jackson/jackson-jaxrs/1.9.12</bundle>
+
+        <bundle>wrap:mvn:org.jboss.resteasy/resteasy-jackson-provider/2.3.10.Final</bundle>
+        <bundle>wrap:mvn:org.jboss.resteasy/resteasy-jettison-provider/2.3.10.Final</bundle>
+        <bundle>wrap:mvn:org.jboss.resteasy/resteasy-atom-provider/2.3.10.Final</bundle>
+        <bundle>wrap:mvn:org.jboss.resteasy/resteasy-multipart-provider/2.3.10.Final</bundle>
+        <bundle dependency='true'>mvn:org.apache.httpcomponents/httpcore-osgi/4.3.3</bundle>
+        <bundle dependency='true'>mvn:org.apache.httpcomponents/httpclient-osgi/4.3.6</bundle>
+        <bundle dependency='true'>mvn:commons-io/commons-io/2.4</bundle>
+        <bundle dependency='true'>wrap:mvn:org.scannotation/scannotation/1.0.3</bundle>
+        <bundle>mvn:org.switchyard.components/switchyard-component-common/2.0.1.redhat-621084</bundle>
+        <bundle>mvn:org.switchyard.components/switchyard-component-resteasy/2.0.1.redhat-621084</bundle>
+     </feature>
+
+    <feature name="switchyard-sca" version="2.0.1.redhat-621084" resolver="(obr)">
+        <feature version="2.0.1.redhat-621084">switchyard</feature>
+        <feature version="2.0.1.redhat-621084">switchyard-internal-sca</feature>
+    </feature>
+
+    <feature name="switchyard-internal-sca" version="2.0.1.redhat-621084" resolver="(obr)">
+        <bundle dependency="true">wrap:mvn:org.jboss.marshalling/jboss-marshalling/1.4.6.Final</bundle>
+        <bundle dependency="true">wrap:mvn:org.jboss.marshalling/jboss-marshalling-river/1.4.6.Final</bundle>
+        <bundle>mvn:org.jboss.marshalling/jboss-marshalling-osgi/1.4.5.Final</bundle>
+        <bundle dependency="true">wrap:mvn:org.jboss/staxmapper/1.1.0.Final</bundle>
+        <bundle dependency="true">mvn:org.jgroups/jgroups/3.4.1.Final</bundle>
+        <bundle dependency="true">mvn:org.infinispan/infinispan-core/5.2.10.Final</bundle>
+        <bundle dependency="true">wrap:mvn:org.jboss.jbossts.jts/jbossjts-jacorb/4.17.19.Final</bundle>
+        <bundle dependency="true">wrap:mvn:org.jboss.jbossts.xts/jbossxts/4.17.19.Final</bundle>
+        <bundle dependency="true">wrap:mvn:org.jboss.jbossts/jbosstxbridge/4.17.19.Final</bundle>
+        <bundle>mvn:org.switchyard.components/switchyard-component-common/2.0.1.redhat-621084</bundle>
+        <bundle>mvn:org.switchyard/switchyard-remote/2.0.1.redhat-621084</bundle>
+        <bundle>mvn:org.switchyard.components/switchyard-component-sca/2.0.1.redhat-621084</bundle>
+        <configfile finalname="/etc/org.switchyard.component.sca.cfg">mvn:org.switchyard.components/switchyard-component-sca/2.0.1.redhat-621084/properties/sca</configfile>
+        <configfile finalname="/etc/infinispan-switchyard.xml">mvn:org.switchyard.components/switchyard-component-sca/2.0.1.redhat-621084/xml/infinispan-switchyard</configfile>
+    </feature>
+
+    <feature name="switchyard-sql" version="2.0.1.redhat-621084" resolver="(obr)">
+        <feature version="2.0.1.redhat-621084">switchyard-camel</feature>
+        <feature version="[2.14,3)">camel-sql</feature>
+        <bundle>mvn:org.switchyard.components/switchyard-component-camel-sql/2.0.1.redhat-621084</bundle>
+    </feature>
+
+    <feature name="switchyard-soap" version="2.0.1.redhat-621084" resolver="(obr)">
+        <feature version="2.0.1.redhat-621084">switchyard</feature>
+        <feature version="2.0.1.redhat-621084">switchyard-internal-soap</feature>
+    </feature>
+
+    <feature name="switchyard-internal-soap" version="2.0.1.redhat-621084" resolver="(obr)">
+        <feature version="[3,4)">cxf</feature>
+        <feature version="[3,4)">cxf-jaxws</feature>
+        <feature version="[3,4)">cxf-http</feature>
+        <feature version="[3,4)">cxf-ws-addr</feature>
+        <feature version="[3,4)">cxf-specs</feature>
+        <feature version="[3,4)">cxf-http-jetty</feature>
+        <bundle dependency="true">mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.wsdl4j/1.6.3_1</bundle>
+        <bundle>mvn:org.jvnet.staxex/stax-ex/1.7.6</bundle>
+        <bundle>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.saaj-impl/1.3.23_2</bundle>
+        <bundle>mvn:org.switchyard.components/switchyard-component-common/2.0.1.redhat-621084</bundle>
+        <bundle>mvn:org.switchyard.components/switchyard-component-soap/2.0.1.redhat-621084</bundle>
+        <bundle>mvn:org.switchyard.karaf/switchyard-karaf-plugin-soap/2.0.1.redhat-621084</bundle>
+    </feature>
+
+    <feature name="switchyard-sap" version="2.0.1.redhat-621084" resolver="(obr)">
+        <feature version="2.0.1.redhat-621084">switchyard-camel</feature>
+        <feature version="[6.2,6.3)">camel-sap</feature>
+        <bundle>mvn:org.switchyard.components/switchyard-component-camel-sap/2.0.1.redhat-621084</bundle>
+    </feature>
+
+    <!-- Switchyard Quickstarts -->
+
+    <feature name="switchyard-quickstart-bpel-jms-binding" version="2.0.1.redhat-621084" resolver="(obr)">
+        <feature version="2.0.1.redhat-621084">switchyard-bpel</feature>
+        <feature version="2.0.1.redhat-621084">switchyard-jms</feature>
+        <bundle>mvn:org.switchyard.quickstarts/switchyard-bpel-jms-binding/2.0.1.redhat-621084</bundle>
+    </feature>
+    
+    <feature name="switchyard-quickstart-bpel-loan-approval" version="2.0.1.redhat-621084" resolver="(obr)">
+        <feature version="2.0.1.redhat-621084">switchyard-bpel</feature>
+        <feature version="2.0.1.redhat-621084">switchyard-soap</feature>
+        <bundle>mvn:org.switchyard.quickstarts/switchyard-bpel-loan-approval/2.0.1.redhat-621084</bundle>
+    </feature>
+    
+    <feature name="switchyard-quickstart-bpel-say-hello" version="2.0.1.redhat-621084" resolver="(obr)">
+        <feature version="2.0.1.redhat-621084">switchyard-bpel</feature>
+        <feature version="2.0.1.redhat-621084">switchyard-soap</feature>
+        <bundle>mvn:org.switchyard.quickstarts/switchyard-bpel-say-hello/2.0.1.redhat-621084</bundle>
+    </feature>
+    
+    <feature name="switchyard-quickstart-bpel-simple-correlation" version="2.0.1.redhat-621084" resolver="(obr)">
+        <feature version="2.0.1.redhat-621084">switchyard-bpel</feature>
+        <feature version="2.0.1.redhat-621084">switchyard-soap</feature>
+        <bundle>mvn:org.switchyard.quickstarts/switchyard-bpel-simple-correlation/2.0.1.redhat-621084</bundle>
+    </feature>
+    
+    <feature name="switchyard-quickstart-bean-service" version="2.0.1.redhat-621084" resolver="(obr)">
+        <feature version="2.0.1.redhat-621084">switchyard-bean</feature>
+        <feature version="2.0.1.redhat-621084">switchyard-soap</feature>
+        <bundle>mvn:org.switchyard.quickstarts/switchyard-bean-service/2.0.1.redhat-621084</bundle>
+    </feature>
+
+    <feature name="switchyard-quickstart-camel-amqp-binding" version="2.0.1.redhat-621084" resolver="(obr)">
+        <feature version="2.0.1.redhat-621084">switchyard-amqp</feature>
+        <feature version="2.0.1.redhat-621084">switchyard-bean</feature>
+        <bundle>mvn:org.switchyard.quickstarts/switchyard-camel-amqp-binding/2.0.1.redhat-621084</bundle>
+    </feature>
+
+    <feature name="switchyard-quickstart-camel-atom-binding" version="2.0.1.redhat-621084" resolver="(obr)">
+        <feature version="2.0.1.redhat-621084">switchyard-atom</feature>
+        <feature version="2.0.1.redhat-621084">switchyard-bean</feature>
+        <bundle>mvn:org.switchyard.quickstarts/switchyard-camel-atom-binding/2.0.1.redhat-621084</bundle>
+    </feature>
+
+    <feature name="switchyard-quickstart-camel-file-binding" version="2.0.1.redhat-621084" resolver="(obr)">
+        <feature version="2.0.1.redhat-621084">switchyard-bean</feature>
+        <feature version="2.0.1.redhat-621084">switchyard-file</feature>
+        <bundle>mvn:org.switchyard.quickstarts/switchyard-camel-file-binding/2.0.1.redhat-621084</bundle>
+    </feature>
+
+    <feature name="switchyard-quickstart-camel-bindy" version="2.0.1.redhat-621084" resolver="(obr)">
+        <feature version="2.0.1.redhat-621084">switchyard-bean</feature>
+        <feature version="2.0.1.redhat-621084">switchyard-file</feature>
+        <feature version="[2.14,3)">camel-bindy</feature>
+        <bundle>mvn:org.switchyard.quickstarts/switchyard-camel-bindy/2.0.1.redhat-621084</bundle>
+    </feature>
+
+    <feature name="switchyard-quickstart-camel-cxf-binding" version="2.0.1.redhat-621084" resolver="(obr)">
+        <feature version="2.0.1.redhat-621084">switchyard-bean</feature>
+        <feature version="2.0.1.redhat-621084">switchyard-camel-cxf</feature>
+        <bundle>mvn:org.switchyard.quickstarts/switchyard-camel-cxf-binding/2.0.1.redhat-621084</bundle>
+    </feature>
+
+    <feature name="switchyard-quickstart-camel-bus-cdi" version="2.0.1.redhat-621084" resolver="(obr)">
+        <feature version="2.0.1.redhat-621084">switchyard-bean</feature>
+        <feature version="2.0.1.redhat-621084">switchyard-soap</feature>
+        <bundle>mvn:org.switchyard.quickstarts/switchyard-camel-bus-cdi/2.0.1.redhat-621084</bundle>
+    </feature>
+
+    <feature name="switchyard-quickstart-camel-ftp-binding" version="2.0.1.redhat-621084" resolver="(obr)">
+        <feature version="2.0.1.redhat-621084">switchyard-ftp</feature>
+        <feature version="2.0.1.redhat-621084">switchyard-bean</feature>
+        <config name="org.switchyard.quickstart.camel-ftp-binding">
+           storefile = etc/ftpclient.jks
+           hostsfile = etc/known_hosts_sftp
+           keyfile =  etc/id_sftp_rsa
+        </config>
+        <bundle>mvn:org.switchyard.quickstarts/switchyard-camel-ftp-binding/2.0.1.redhat-621084</bundle>
+    </feature>
+
+    <feature name="switchyard-quickstart-camel-hl7" version="2.0.1.redhat-621084" resolver="(obr)">
+    <feature version="2.0.1.redhat-621084">switchyard-bean</feature>
+        <feature version="2.0.1.redhat-621084">switchyard-camel</feature>
+        <feature version="[2.14,3)">camel-hl7</feature>
+        <feature version="[2.14,3)">camel-mina2</feature>
+        <bundle>mvn:org.switchyard.quickstarts/switchyard-camel-hl7/2.0.1.redhat-621084</bundle>
+    </feature>
+
+    <feature name="switchyard-quickstart-camel-jaxb" version="2.0.1.redhat-621084" resolver="(obr)">
+        <feature version="2.0.1.redhat-621084">switchyard-camel</feature>
+        <feature version="2.0.1.redhat-621084">switchyard-http</feature>
+        <feature version="[2.14,3)">camel-jaxb</feature>
+        <bundle>mvn:org.switchyard.quickstarts/switchyard-camel-jaxb/2.0.1.redhat-621084</bundle>
+    </feature>
+
+    <feature name="switchyard-quickstart-camel-jms-binding" version="2.0.1.redhat-621084" resolver="(obr)">
+        <feature version="2.0.1.redhat-621084">switchyard-bean</feature>
+        <feature version="2.0.1.redhat-621084">switchyard-jms</feature>
+        <bundle>mvn:org.switchyard.quickstarts/switchyard-camel-jms-binding/2.0.1.redhat-621084</bundle>
+    </feature>
+ <!-- Needs a transaction manager -->
+
+    <!-- Needs a transaction manager -->
+    <feature name="switchyard-quickstart-camel-jpa-binding" version="2.0.1.redhat-621084" resolver="(obr)">
+        <feature>jndi</feature>
+        <feature>transaction</feature>
+        <feature>jpa</feature>
+        <feature version="2.0.1.redhat-621084">switchyard-bean</feature>
+        <feature version="2.0.1.redhat-621084">switchyard-jpa</feature>
+        <feature version="2.0.1.redhat-621084">switchyard-quartz</feature>
+        <config name="org.apache.aries.transaction">
+            aries.transaction.recoverable = true
+            aries.transaction.timeout = 600
+            aries.transaction.howl.maxLogFiles = 2
+            aries.transaction.howl.maxBlocksPerFile = 512
+            aries.transaction.howl.bufferSizeKBytes = 4
+        </config>
+        <bundle>mvn:com.h2database/h2/1.3.168</bundle>
+        <bundle>mvn:org.switchyard.quickstarts/switchyard-camel-jpa-binding/2.0.1.redhat-621084</bundle>
+    </feature>
+
+    <feature name="switchyard-quickstart-camel-mail-binding" version="2.0.1.redhat-621084" resolver="(obr)">
+        <feature version="2.0.1.redhat-621084">switchyard-bean</feature>
+        <feature version="2.0.1.redhat-621084">switchyard-mail</feature>
+        <bundle>mvn:org.switchyard.quickstarts/switchyard-camel-mail-binding/2.0.1.redhat-621084</bundle>
+    </feature>
+
+    <feature name="switchyard-quickstart-camel-mqtt-binding" version="2.0.1.redhat-621084" resolver="(obr)">
+        <feature version="2.0.1.redhat-621084">switchyard-bean</feature>
+        <feature version="2.0.1.redhat-621084">switchyard-mqtt</feature>
+        <bundle>mvn:org.switchyard.quickstarts/switchyard-camel-mqtt-binding/2.0.1.redhat-621084</bundle>
+    </feature>
+
+    <feature name="switchyard-quickstart-camel-netty-binding" version="2.0.1.redhat-621084" resolver="(obr)">
+        <feature version="2.0.1.redhat-621084">switchyard-bean</feature>
+        <feature version="2.0.1.redhat-621084">switchyard-netty</feature>
+        <bundle>mvn:org.switchyard.quickstarts/switchyard-camel-netty-binding/2.0.1.redhat-621084</bundle>
+    </feature>
+
+    <feature name="switchyard-quickstart-camel-quartz-binding" version="2.0.1.redhat-621084" resolver="(obr)">
+        <feature version="2.0.1.redhat-621084">switchyard-bean</feature>
+        <feature version="2.0.1.redhat-621084">switchyard-quartz</feature>
+        <bundle>mvn:org.switchyard.quickstarts/switchyard-camel-quartz-binding/2.0.1.redhat-621084</bundle>
+    </feature>
+
+    <feature name="switchyard-quickstart-camel-rss-binding" version="2.0.1.redhat-621084" resolver="(obr)">
+        <feature version="2.0.1.redhat-621084">switchyard-bean</feature>
+        <feature version="2.0.1.redhat-621084">switchyard-rss</feature>
+        <bundle>mvn:org.switchyard.quickstarts/switchyard-camel-rss-binding/2.0.1.redhat-621084</bundle>
+    </feature>
+
+    <feature name="switchyard-quickstart-camel-service" version="2.0.1.redhat-621084" resolver="(obr)">
+        <feature version="2.0.1.redhat-621084">switchyard-camel</feature>
+        <feature version="[2.14,3)">camel-script</feature>
+        <feature version="[2.14,3)">camel-script-javascript</feature>
+        <feature version="[2.14,3)">camel-ognl</feature>
+        <feature version="[2.14,3)">camel-mvel</feature>
+        <feature version="2.0.1.redhat-621084">switchyard-sca</feature>
+        <bundle>mvn:org.switchyard.quickstarts/switchyard-camel-service/2.0.1.redhat-621084</bundle>
+    </feature>
+    
+    <feature name="switchyard-quickstart-remote-invoker" version="2.0.1.redhat-621084" resolver="(obr)">
+        <feature version="2.0.1.redhat-621084">switchyard-bean</feature>
+        <feature version="2.0.1.redhat-621084">switchyard-sca</feature>
+        <bundle>mvn:org.switchyard.quickstarts/switchyard-remote-invoker/2.0.1.redhat-621084</bundle>
+    </feature>
+    
+    <feature name="switchyard-demo-cluster-dealer" version="2.0.1.redhat-621084" resolver="(obr)">
+        <feature version="2.0.1.redhat-621084">switchyard-bean</feature>
+        <feature version="2.0.1.redhat-621084">switchyard-sca</feature>
+        <bundle>mvn:org.switchyard.quickstarts.demos/switchyard-demo-cluster-dealer/2.0.1.redhat-621084</bundle>
+    </feature>
+    
+    <feature name="switchyard-demo-cluster-credit" version="2.0.1.redhat-621084" resolver="(obr)">
+        <feature version="2.0.1.redhat-621084">switchyard-bean</feature>
+        <feature version="2.0.1.redhat-621084">switchyard-sca</feature>
+        <bundle>mvn:org.switchyard.quickstarts.demos/switchyard-demo-cluster-credit/2.0.1.redhat-621084</bundle>
+    </feature>
+
+    <feature name="switchyard-quickstart-camel-saxon" version="2.0.1.redhat-621084" resolver="(obr)">
+        <feature version="2.0.1.redhat-621084">switchyard-bean</feature>
+        <feature version="2.0.1.redhat-621084">switchyard-camel</feature>
+        <feature version="2.0.1.redhat-621084">switchyard-soap</feature>
+        <feature version="[2.14,3)">camel-saxon</feature>
+        <bundle>mvn:org.switchyard.quickstarts/switchyard-camel-saxon/2.0.1.redhat-621084</bundle>
+    </feature>
+
+
+    <!-- Requires SOAP binding -->
+    <feature name="switchyard-quickstart-camel-soap-proxy" version="2.0.1.redhat-621084" resolver="(obr)">
+        <feature version="2.0.1.redhat-621084">switchyard-bean</feature>
+        <feature version="2.0.1.redhat-621084">switchyard-camel</feature>
+        <feature version="2.0.1.redhat-621084">switchyard-soap</feature>
+        <feature version="[3,4)">cxf</feature>
+        <config name="org.switchyard.quickstarts.switchyard.camel.soap.proxy">
+            org.switchyard.component.soap.client.port=8181/cxf
+            org.switchyard.component.soap.standalone.port=8181/cxf
+        </config>
+        <bundle>mvn:org.switchyard.quickstarts/switchyard-camel-soap-proxy-reverse/2.0.1.redhat-621084</bundle>
+        <bundle>mvn:org.switchyard.quickstarts/switchyard-camel-soap-proxy/2.0.1.redhat-621084</bundle>
+    </feature>
+
+    <feature name="switchyard-quickstart-camel-sql-binding" version="2.0.1.redhat-621084" resolver="(obr)">
+        <feature>jndi</feature>
+        <feature version="2.0.1.redhat-621084">switchyard-bean</feature>
+        <feature version="2.0.1.redhat-621084">switchyard-quartz</feature>
+        <feature version="2.0.1.redhat-621084">switchyard-sql</feature>
+
+        <bundle>mvn:com.h2database/h2/1.3.168</bundle>
+        <config name="org.switchyard.quickstarts.switchyard.camel.sql.binding">
+            org.switchyard.quickstarts.camel.sql.datasourceName=osgi:service/jboss/myDS
+        </config>
+        <bundle>mvn:org.switchyard.quickstarts/switchyard-camel-sql-binding/2.0.1.redhat-621084</bundle>
+    </feature>
+
+    <feature name="switchyard-quickstart-soap-addressing" version="2.0.1.redhat-621084" resolver="(obr)">
+        <feature version="2.0.1.redhat-621084">switchyard-soap</feature>
+        <feature version="2.0.1.redhat-621084">switchyard-bean</feature>
+        <feature version="2.0.1.redhat-621084">switchyard-camel</feature>
+        <feature version="2.0.1.redhat-621084">switchyard-file</feature>
+        <feature version="2.0.1.redhat-621084">switchyard-http</feature>
+        <config name="org.switchyard.quickstarts.switchyard.soap.addressing">
+            org.switchyard.component.soap.client.port=8181/cxf
+            org.switchyard.component.soap.standalone.port=8181
+            org.switchyard.component.http.standalone.port=8181
+        </config>
+        <bundle>mvn:org.switchyard.quickstarts/switchyard-soap-addressing/2.0.1.redhat-621084</bundle>
+    </feature>
+
+    <feature name="switchyard-quickstart-soap-attachment" version="2.0.1.redhat-621084" resolver="(obr)">
+        <feature version="2.0.1.redhat-621084">switchyard-soap</feature>
+        <feature version="2.0.1.redhat-621084">switchyard-bean</feature>
+        <feature version="2.0.1.redhat-621084">switchyard-camel</feature>
+        <config name="org.switchyard.quickstarts.switchyard.soap.attachment">
+            org.switchyard.component.soap.client.port=8181/cxf
+            org.switchyard.component.soap.standalone.port=8181
+        </config>
+        <bundle>mvn:org.switchyard.quickstarts/switchyard-soap-attachment/2.0.1.redhat-621084</bundle>
+    </feature>
+
+    <feature name="switchyard-quickstart-soap-binding-rpc" version="2.0.1.redhat-621084" resolver="(obr)">
+        <feature version="2.0.1.redhat-621084">switchyard-soap</feature>
+        <feature version="2.0.1.redhat-621084">switchyard-bean</feature>
+        <feature version="2.0.1.redhat-621084">switchyard-camel</feature>
+        <config name="org.switchyard.quickstarts.switchyard.soap.binding.rpc">
+            org.switchyard.component.soap.client.port=8181/cxf
+            org.switchyard.component.soap.standalone.port=8181
+        </config>
+        <bundle>mvn:org.switchyard.quickstarts/switchyard-soap-binding-rpc/2.0.1.redhat-621084</bundle>
+    </feature>
+
+    <feature name="switchyard-quickstart-soap-mtom" version="2.0.1.redhat-621084" resolver="(obr)">
+        <feature version="2.0.1.redhat-621084">switchyard-soap</feature>
+        <feature version="2.0.1.redhat-621084">switchyard-bean</feature>
+        <feature version="2.0.1.redhat-621084">switchyard-camel</feature>
+        <config name="org.switchyard.quickstarts.switchyard.soap.mtom">
+            org.switchyard.component.soap.client.port=8181/cxf
+            org.switchyard.component.soap.standalone.port=8181
+        </config>
+        <bundle>mvn:org.switchyard.quickstarts/switchyard-soap-mtom/2.0.1.redhat-621084</bundle>
+    </feature>
+
+    <feature name="switchyard-quickstart-rest-binding" version="2.0.1.redhat-621084" resolver="(obr)">
+        <feature version="2.0.1.redhat-621084">switchyard-bean</feature>
+        <feature version="2.0.1.redhat-621084">switchyard-rest</feature>
+        <config name="org.switchyard.quickstarts.switchyard.rest.binding">
+            org.switchyard.component.resteasy.standalone.port=8181
+        </config>
+        <bundle>mvn:org.switchyard.quickstarts/switchyard-rest-binding/2.0.1.redhat-621084</bundle>
+    </feature>
+
+    <feature name="switchyard-quickstart-transform-dozer" version="2.0.1.redhat-621084" resolver="(obr)">
+        <feature version="2.0.1.redhat-621084">switchyard-bean</feature>
+        <feature version="2.0.1.redhat-621084">switchyard-sca</feature>
+        <bundle>mvn:org.switchyard.quickstarts/switchyard-transform-dozer/2.0.1.redhat-621084</bundle>
+    </feature>
+
+    <feature name="switchyard-quickstart-transform-jaxb" version="2.0.1.redhat-621084" resolver="(obr)">
+        <feature version="2.0.1.redhat-621084">switchyard-bean</feature>
+        <feature version="2.0.1.redhat-621084">switchyard-soap</feature>
+        <bundle>mvn:org.switchyard.quickstarts/switchyard-transform-jaxb/2.0.1.redhat-621084</bundle>
+    </feature>
+
+    <feature name="switchyard-quickstart-transform-json" version="2.0.1.redhat-621084" resolver="(obr)">
+        <feature version="2.0.1.redhat-621084">switchyard-bean</feature>
+        <feature version="2.0.1.redhat-621084">switchyard-sca</feature>
+        <bundle>mvn:org.switchyard.quickstarts/switchyard-transform-json/2.0.1.redhat-621084</bundle>
+    </feature>
+
+    <feature name="switchyard-quickstart-transform-smooks" version="2.0.1.redhat-621084" resolver="(obr)">
+        <feature version="2.0.1.redhat-621084">switchyard-bean</feature>
+        <feature version="2.0.1.redhat-621084">switchyard-soap</feature>
+        <bundle>mvn:org.switchyard.quickstarts/switchyard-transform-smooks/2.0.1.redhat-621084</bundle>
+    </feature>
+
+    <feature name="switchyard-quickstart-transform-xslt" version="2.0.1.redhat-621084" resolver="(obr)">
+        <feature version="2.0.1.redhat-621084">switchyard-bean</feature>
+        <feature version="2.0.1.redhat-621084">switchyard-soap</feature>
+        <bundle>mvn:org.switchyard.quickstarts/switchyard-transform-xslt/2.0.1.redhat-621084</bundle>
+    </feature>
+
+    <feature name="switchyard-quickstart-validate-xml" version="2.0.1.redhat-621084" resolver="(obr)">
+        <feature version="2.0.1.redhat-621084">switchyard-bean</feature>
+        <feature version="2.0.1.redhat-621084">switchyard-soap</feature>
+        <bundle>mvn:org.switchyard.quickstarts/switchyard-validate-xml/2.0.1.redhat-621084</bundle>
+    </feature>
+
+    <feature name="switchyard-quickstart-camel-sap-binding" version="2.0.1.redhat-621084" resolver="(obr)">
+        <feature version="2.0.1.redhat-621084">switchyard-bean</feature>
+        <feature version="2.0.1.redhat-621084">switchyard-camel</feature>
+        <feature version="2.0.1.redhat-621084">switchyard-sap</feature>
+        <bundle>mvn:org.switchyard.quickstarts/switchyard-camel-sap-binding/2.0.1.redhat-621084</bundle>
+    </feature>
+
+    <feature name="switchyard-quickstart-http-binding" version="2.0.1.redhat-621084" resolver="(obr)">
+        <feature version="2.0.1.redhat-621084">switchyard-bean</feature>
+        <feature version="2.0.1.redhat-621084">switchyard-http</feature>
+        <config name="org.switchyard.quickstarts.switchyard.http.binding">
+            org.switchyard.component.http.standalone.port=8181
+        </config>
+        <bundle>mvn:org.switchyard.quickstarts/switchyard-http-binding/2.0.1.redhat-621084</bundle>
+    </feature>
+
+
+    <feature name="switchyard-demo-policy-security-basic" version="2.0.1.redhat-621084" resolver="(obr)">
+        <feature version="2.0.1.redhat-621084">switchyard-soap</feature>
+        <feature version="2.0.1.redhat-621084">switchyard-bean</feature>
+        <feature version="2.0.1.redhat-621084">switchyard-camel</feature>
+        <bundle>mvn:org.switchyard.quickstarts.demos/switchyard-demo-policy-security-basic/2.0.1.redhat-621084</bundle>
+    </feature>
+
+    <feature name="switchyard-demo-policy-security-cert" version="2.0.1.redhat-621084" resolver="(obr)">
+        <feature version="2.0.1.redhat-621084">switchyard-soap</feature>
+        <feature version="2.0.1.redhat-621084">switchyard-bean</feature>
+        <feature version="2.0.1.redhat-621084">switchyard-camel</feature>
+        <bundle>mvn:org.switchyard.quickstarts.demos/switchyard-demo-policy-security-cert/2.0.1.redhat-621084</bundle>
+    </feature>
+
+    <!-- Need an alternative for org.jboss.wsf.stack.cxf.security.authentication.SubjectCreatingPolicyInterceptor
+    <feature name="switchyard-demo-policy-security-wss-username" version="2.0.1.redhat-621084" resolver="(obr)">
+        <feature version="2.0.1.redhat-621084">switchyard-soap</feature>
+        <feature version="2.0.1.redhat-621084">switchyard-bean</feature>
+        <feature version="2.0.1.redhat-621084">switchyard-camel</feature>
+        <bundle>mvn:org.switchyard.quickstarts.demos/switchyard-demo-policy-security-wss-username/2.0.1.redhat-621084</bundle>
+    </feature>
+    -->
+
+    <feature name="switchyard-demo-policy-transaction" version="2.0.1.redhat-621084" resolver="(obr)">
+        <feature>jndi</feature>
+        <feature>transaction</feature>
+        <config name="org.apache.aries.transaction">
+            aries.transaction.recoverable = true
+            aries.transaction.timeout = 600
+            aries.transaction.howl.maxLogFiles = 2
+            aries.transaction.howl.maxBlocksPerFile = 512
+            aries.transaction.howl.bufferSizeKBytes = 4
+        </config>
+        <feature version="2.0.1.redhat-621084">switchyard-bean</feature>
+        <feature version="2.0.1.redhat-621084">switchyard-jms</feature>
+        <bundle>mvn:org.switchyard.quickstarts.demos/switchyard-demo-policy-transaction/2.0.1.redhat-621084</bundle>
+    </feature>
+
+
+</features>

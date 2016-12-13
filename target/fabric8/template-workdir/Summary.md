@@ -1,0 +1,1 @@
+A simple Rest Camel route in Karaf container
